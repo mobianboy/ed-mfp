@@ -39,8 +39,8 @@ class AwsService {
     
     function __construct(\Symfony\Bridge\Monolog\Logger $logger = null) {
         $aws = Aws::factory(array(
-            'key' => 'AKIAJ524YL33KEOM3EHA',
-            'secret' => '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',
+            'key' => '?',
+            'secret' => '?',
             'region' => Region::US_EAST_1
         ));
         
