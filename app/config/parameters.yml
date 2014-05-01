@@ -1,0 +1,69 @@
+parameters:
+  pdo.class: PDO
+  pdo.attr_errmode: 3
+  pdo.erromode_exception: 2
+  pdo.options:
+    %pdo.attr_errmode%: %pdo.erromode_exception%
+  
+#  database.db1.dsn: mysql:host=eardish-db-1.camva4j6wn9b.us-west-1.rds.amazonaws.com;dbname=sac_dev
+#  database.db1.username: eardishdb
+#  database.db1.password: asdfzxcvqwer
+# 
+#  database.live.dsn: mysql:host=eardish-live-dep.camva4j6wn9b.us-west-1.rds.amazonaws.com;dbname=sac_live
+#  database.live.username: root
+#  database.live.password: asdfzxcv
+#
+#
+
+  database.db1.dsn: mysql:host=alpha-db.eardish.net;dbname=devalphawebdb
+  database.db1.username: devalphawebdb
+  database.db1.password: GLLTtpr5dbKLL
+
+  database.live.dsn: mysql:host=alpha-db.eardish.net;dbname=alphawebdb
+  database.live.username: alphawebdb
+  database.live.password: GLLTtpr5dbKLL
+  
+
+  mailer_transport:  smtp
+  mailer_host:       127.0.0.1
+  mailer_user:       ~
+  mailer_password:   ~
+
+  locale:            en
+  secret:            aSEcRetToKEN
+  
+  exception_listener.controller: EarDish\Common\Resources\ExceptionHandler::unknownException
+
+services:
+  db:
+    class: %pdo.class%
+    arguments:
+      - %database.db1.dsn%
+      - %database.db1.username%
+      - %database.db1.password%
+      - %pdo.options%
+  
+  db_live:
+    class: %pdo.class%
+    arguments:
+      - %database.live.dsn%
+      - %database.live.username%
+      - %database.live.password%
+      - %pdo.options%
+
+  imgproc:
+    class: EarDish\MFP\Services\ImageProc
+    
+  apibuilder:
+    class: EarDish\Common\Resources\ApiBuilder
+    
+  aws:
+    class: EarDish\MFP\Services\AwsService
+    arguments:
+      - "@logger"
+
+  apirequest:
+    class: EarDish\Common\Resources\ApiRequest
+
+  audioproc:
+    class: EarDish\MFP\Services\AudioProc

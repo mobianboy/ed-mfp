@@ -1,0 +1,3 @@
+ear_dish_mfpapi_handler_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: EarDishMFPAPIHandlerBundle:Default:index }

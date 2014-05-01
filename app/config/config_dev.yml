@@ -1,0 +1,46 @@
+imports:
+    - { resource: config.yml }
+
+framework:
+    router:   { resource: "%kernel.root_dir%/config/routing_dev.yml" }
+    profiler: { only_exceptions: false }
+
+monolog:
+    handlers:
+        main:
+            type:  stream
+            path:  %kernel.logs_dir%/%kernel.environment%.log
+            level: debug
+        firephp:
+            type:  firephp
+            level: info
+        chromephp:
+            type:  chromephp
+            level: info
+
+parameters:
+  database_driver:   pdo_mysql
+  database_host:     alpha-db.eardish.net
+  database_port:     ~
+  database_name:     devalphawebdb
+  database_user:     devalphawebdb
+  database_password: GLLTtpr5dbKLL
+  
+doctrine:
+    dbal:
+        driver:   %database_driver%
+        host:     %database_host%
+        port:     %database_port%
+        dbname:   %database_name%
+        user:     %database_user%
+        password: %database_password%
+        charset:  UTF8
+        mapping_types:
+          enum: string
+        
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+        auto_mapping: true
+
+#swiftmailer:
+#    delivery_address: me@example.com

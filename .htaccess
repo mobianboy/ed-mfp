@@ -1,0 +1,25 @@
+Header set Access-Control-Allow-Origin *
+Header set Access-Control-Allow-Headers "Content-Type, Content-Disposition, Content-Description, Content-Range, Content-Length"
+
+RewriteEngine On
+
+#<IfModule mod_vhost_alias.c>
+#    RewriteBase /
+#</IfModule>
+
+RewriteCond %{REQUEST_URI} ^/healthcheck.php$
+RewriteRule ^(.*)$ healthcheck.php [QSA,L]
+
+RewriteCond %{HTTP_HOST} ^mfp.eardish.com$
+RewriteCond %{REQUEST_URI} ^/$
+RewriteRule ^(.*)$ http://www.eardish.com [R,L]
+
+RewriteCond %{HTTP_HOST} ^(.*)qa(.*)
+RewriteRule ^(.*)$ web/app_qa.php [QSA,L]
+
+RewriteCond %{HTTP_HOST} ^(.*)\.net(.*)
+RewriteRule ^(.*)$ web/app_dev.php [QSA,L]
+
+RewriteCond %{HTTP_HOST} ^(.*)mfp(.*)
+RewriteRule ^(.*)$ web/app.php [QSA,L]
+

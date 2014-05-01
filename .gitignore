@@ -1,0 +1,3 @@
+#Ignore symfony logs and cache folders
+/app/logs/*
+/app/cache/*

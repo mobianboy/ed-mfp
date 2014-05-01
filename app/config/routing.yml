@@ -1,0 +1,25 @@
+upload:
+    pattern:  /upload
+    defaults: { _controller: EarDishMFPAPIHandlerBundle:Default:upload }
+    
+profile:
+    pattern:  /get
+    defaults: { _controller: EarDishMFPAPIHandlerBundle:Default:get }
+        
+delete:
+    pattern:  /delete
+    defaults: { _controller: EarDishMFPAPIHandlerBundle:Default:delete }
+        
+migrate:
+    pattern:  /migrate
+    defaults: { _controller: EarDishMFPAPIHandlerBundle:Default:migrate }
+    
+demoslice:
+    pattern:  /demoslice
+    defaults: { _controller: EarDishMFPAPIHandlerBundle:Default:demoslice }
+
+default:
+    pattern: /{url}
+    defaults: { _controller: EarDishMFPAPIHandlerBundle:Default:unknown, url: "none" }
+    requirements:
+      url: ".+"

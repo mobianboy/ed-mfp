@@ -1,0 +1,7 @@
+parameters:
+#    ear_dish_mfpapi_handler.example.class: EarDish\MFP\APIHandlerBundle\Example
+
+services:
+#    ear_dish_mfpapi_handler.example:
+#        class: %ear_dish_mfpapi_handler.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
